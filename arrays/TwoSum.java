@@ -1,21 +1,22 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
+        Map<Integer, Integer> sum = new HashMap<>(); 
         int length = nums.length; 
-        int [] memo = new int [2]; 
-        HashMap<Integer, Integer> unique = new HashMap<>();
-        return recurseSum(nums, target, 0, unique, memo); 
-    }
-    public static int[] recurseSum(int [] nums, int target, int index, HashMap<Integer, Integer> unique,int [] memo ) { 
-        int difference = 0; 
-        difference = target - nums[index]; 
-        if(unique.containsKey(difference)){
-            memo[0] = index; 
-            memo[1] = unique.get(difference);
-            return memo; 
+        int [] ans = new int[2]; 
+        int diff = 0; 
+        for(int i = 0 ; i < length; i++) {
+            diff = target - nums[i]; 
+            if(sum.containsKey(diff)){
+                ans[0] = i; 
+                ans[1] = sum.get(diff);
+                break;  
+            }
+            else
+            {
+                sum.put(nums[i],  i); 
+            }
         }
-        else{
-            unique.put(nums[index], index); 
-            return recurseSum(nums, target, index + 1, unique, memo);
-        }
+        
+        return ans; 
     }
 }
