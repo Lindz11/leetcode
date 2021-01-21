@@ -1,21 +1,23 @@
 class Solution {
-    public int climbStairs(int n) { 
-       int step1 = 1; 
-       int step2 = 2; 
-       int ans = 0; 
-       int [] memo = new int [n + 1];
-       return recurseStairs(n , ans, memo); 
-    }
     
-    public static int recurseStairs(int n, int ans, int [] memo ) {
-        if(ans == n)
-            return 1; 
-        else if(ans > n)
-            return 0; 
-        else if( memo[ans] > 0)
-            return memo[ans];
+    public int climbStairs(int n) {
+        int [] dp = new int [n + 1];
+        dp[0] = 1; 
+        dp[1] = 1; 
+        for(int i = 2; i <=n; i++){
+            dp[i] = dp[i - 1] + dp[i - 2]; 
+        }
         
-        memo [ans] = recurseStairs(n, ans + 1, memo) + recurseStairs(n, ans + 2, memo);
-        return memo[ans]; 
+        return dp[n]; 
     }
+    // Example 6 steps 
+    /*
+    dp[0] = 1
+    dp[1] = 1
+    dp[2] = 2
+    dp[3] = 3
+    dp[4] = 5 = 3 + 2
+    dp[5] = 8 = 5 + 3
+    dp[6] = 13 = 8 + 5
+    */
 }
