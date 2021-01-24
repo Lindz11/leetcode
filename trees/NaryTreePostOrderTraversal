@@ -1,0 +1,25 @@
+class Solution {
+    List<Integer> answer = new ArrayList<>(); 
+    public List<Integer> postorder(Node root) {
+        // If we are given a null root just return the answer
+        if(root == null)
+            return answer; 
+        helper(root); 
+        // Add the root value at the end
+        answer.add(root.val);
+        // return
+        return answer; 
+    }
+    
+    void helper(Node root) {
+        // If we are at a null root return
+        if(root == null)
+            return; 
+        for(Node child: root.children){
+            // Loop through all of them going down the farthest one 
+            helper(child);
+            // Add after going through each 
+            answer.add(child.val);
+        } 
+    }
+}
