@@ -1,26 +1,24 @@
 class Solution {
     public List<String> generateParenthesis(int n) {
-        String paren = "";
-        // Set both the open and closed parenthesis equal to n
-        int open = n; 
-        int closed = n;
-        // Make the string arraylist and the helper function 
         List<String> all = new ArrayList<>(); 
-        helper(n, open, closed, paren, all);
+        helper(all, 0, 0, n, ""); 
         return all; 
     }
     
-    private void helper( int n, int open, int closed, String paren, List<String> all) {
-        // If both the number of closed and open parens are 0 then add to the arraylist 
-        if(open == 0 && closed == 0 )
+    void helper(List<String> all, int open, int closed, int n, String paren) {
+        if(open == n && closed == n){
             all.add(paren); 
-        else{
-            //  if there are any open parenthesis we can add, add them all as a depth first approach 
-            if(open > 0)
-                helper(n, open - 1, closed, paren + '(', all);
-            // Check to see after if the open and closed parameters are imbalanced and if so a closed parenthesis
-            if(closed > 0 && closed > open)
-                helper( n, open, closed - 1, paren + ')', all);
+        }
+        else
+        {
+            if(open!=n)
+            {
+                helper(all, open + 1, closed, n, paren + '('); 
+            }
+            if(closed < open)
+            {
+                helper(all, open, closed + 1, n , paren + ')'); 
+            }
         }
     }
 }
