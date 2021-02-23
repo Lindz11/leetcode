@@ -1,7 +1,7 @@
 class Solution {
     // For this problem we need to go through the ints from left to right 
     // turn each integer into a string/ char array
-    // Have an inside while loop testing each individual element
+    // Have an inside loop testing each individual element
     // Then if it meets the criteria add it to our ans list array
     public List<Integer> selfDividingNumbers(int left, int right) {
         List<Integer> ans = new ArrayList<>(); 
@@ -28,3 +28,4 @@ class Solution {
         return ans; 
     }
     
+}
